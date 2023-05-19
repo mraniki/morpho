@@ -13,6 +13,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 # Install Chrome.
 RUN apt-get update && apt-get -y install google-chrome-stable
+RUN apt-get -y install chromium-browser
 RUN apt-get -y install firefox
 
 RUN apt-get -y install python3-pip
