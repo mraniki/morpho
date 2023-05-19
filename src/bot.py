@@ -50,7 +50,7 @@ async def navigator():
         data = re.findall(r'\d+', check)
         logger.debug(data)
         data_process = int(data[0]) + int(data[1])
-        logger.info("sleep: %s", sleep)
+        logger.info("data_process: %s", data_process)
         await page.keyboard.type(data_selector())
         await page.click(settings.check_selector)
         await page.keyboard.type(f"{data_process}")
@@ -58,8 +58,8 @@ async def navigator():
         await page.click(settings.selector2)
         await page.screenshot({'path': 'loaded.png', 'fullPage': 'True'})
         await asyncio.sleep(5)
-        if settings.activeflag:
-            # await page.click(settings.selector3)
+        if settings.activeflag == "True":
+            #await page.click(settings.selector3)
             await asyncio.sleep(5)
             await page.screenshot({'path': 'success.png', 'fullPage': 'True'})
         await browser.close()
