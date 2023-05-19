@@ -22,6 +22,7 @@ async def navigator():
         await page.goto(settings.url)
         content = await page.evaluate('document.body.textContent', force_expr=False)
         data = content[1997:2005]
+        # await page.click(settings.check_identifier)
         data = data.split('+')
         data_process = int(data[0]) + int(data[1])
         logger.debug(data_process)

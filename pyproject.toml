@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "tt"
+version = "1.6.14"
+description = "CEX & DEX integration with multi messaging platform support."
+authors = ["mraniki <8766259+mraniki@users.noreply.github.com>"]
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.urls]
+"Changelog" =  "https://github.com/mraniki/tt/blob/dev/CHANGELOG.rst"
+"Support" =  "https://github.com/mraniki/tt/discussions"
+"Issues" =  "https://github.com/mraniki/tt/issues"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+pytest = "*"
+pytest-cov = "*"
+pytest-asyncio = "*"
+
+[tool.poetry.dev-dependencies]
+python-semantic-release = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = ["pyproject.toml:version","src/bot.py:__version__"]
+branch = "main"
+upload_to_pypi = false
+upload_to_release = false
+build_command = false
+remove_dist = false
+commit_parser = "semantic_release.history.emoji_parser"
+use_textual_changelog_sections = true
+major_emoji = ":boom:"
+#major_emoji¶ #💥:boom:
+minor_emoji = ":sparkles:,:children_crossing:,:lipstick:,:iphone:,:egg:,:chart_with_upwards_trend:"
+#minor_emoji #✨🥚🚸📱💄📈
+patch_emoji = ":ambulance:,:lock:,:arrow_up:,:bug:,:zap:,:goal_net:,:alien:,:wheelchair:,:speech_balloon:,:mag:,:apple:,:penguin:,:checkered_flag:,:robot:,:green_apple:"
+#patch_emoji # 🐛🚑⚡🔒👽🔍💬🥅♿🍏🐧🏁🤖
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
