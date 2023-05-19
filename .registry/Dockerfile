@@ -5,4 +5,5 @@ COPY ./src .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 EXPOSE 8443 8080
+RUN pyppeteer-install
 CMD [ "python", "./bot.py" ]
