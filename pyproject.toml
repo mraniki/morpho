@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "tt"
-version = "1.6.14"
-description = "CEX & DEX integration with multi messaging platform support."
+name = "morpho"
+version = "0.0.0"
+description = "morpho"
 authors = ["mraniki <8766259+mraniki@users.noreply.github.com>"]
 license = "MIT License"
 readme = "README.md"
 
 [tool.poetry.urls]
-"Changelog" =  "https://github.com/mraniki/tt/blob/dev/CHANGELOG.rst"
-"Support" =  "https://github.com/mraniki/tt/discussions"
-"Issues" =  "https://github.com/mraniki/tt/issues"
+"Changelog" =  "https://github.com/mraniki/morpho/blob/dev/CHANGELOG.rst"
+"Support" =  "https://github.com/mraniki/morpho/discussions"
+"Issues" =  "https://github.com/mraniki/morpho/issues"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
