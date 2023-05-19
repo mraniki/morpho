@@ -5,6 +5,7 @@ from dynaconf import Dynaconf
 ROOT = os.path.dirname(__file__)
 
 settings = Dynaconf(
+    envvar_prefix="MORPHO",
     root_path=os.path.dirname(ROOT),
     settings_files=[
         # os.path.join(ROOT, "default_settings.toml"),
