@@ -23,6 +23,6 @@ logging.basicConfig(
     level=settings.loglevel
 )
 logger = logging.getLogger("FORM")
-# if settings.loglevel == "DEBUG":
-#     logging.getLogger("websockets.client").setLevel(logging.WARNING)
-#     logging.getLogger("pyppeteer").setLevel(logging.WARNING)
+if settings.loglevel == "DEBUG":
+    logging.getLogger("websockets.client").setLevel(logging.WARNING)
+    logging.getLogger("pyppeteer").setLevel(logging.WARNING)

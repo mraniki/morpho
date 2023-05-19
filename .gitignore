@@ -1,6 +1,7 @@
 #Dynaconf
 settings.toml
 .secrets.*
+auth.json
 example.png
 loaded.png
 success.png
