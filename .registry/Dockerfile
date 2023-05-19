@@ -23,13 +23,7 @@ RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
     && chown -R pptruser:pptruser /home/pptruser \
     && chown -R pptruser:pptruser /app
 
-# Run everything after as non-privileged user.
-
-
-
-#RUN apt-get -y install firefox
-
-#RUN apt-get -y install python3-pip
+RUN apk add --no-cache python3 py3-pip
 
 WORKDIR /app
 COPY ./src .
