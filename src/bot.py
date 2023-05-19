@@ -20,7 +20,7 @@ worksheet = sheet.get_worksheet(0)
 def data_selector():
     global text_value
     global text_value
-    for i in range(3, 100):
+    for i in range(3, 1000):
         text_value = worksheet.acell(f'E{i}').value
         text_status = worksheet.acell(f'F{i}').value
         if text_status != 'Done':
@@ -105,5 +105,5 @@ def health_check():
 
 
 if __name__ == '__main__':
-    """Launch Talky"""
+    """Launch Morpho"""
     uvicorn.run(app, host=settings.host, port=int(settings.port))
