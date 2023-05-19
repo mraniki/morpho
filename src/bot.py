@@ -12,7 +12,6 @@ import re
 from pyppeteer import launch
 from config import settings, logger
 
-# gc = gspread.service_account(filename="auth.json")
 gc = gspread.service_account_from_dict(settings.credentials)
 sheet = gc.open_by_url(settings.gsheeturl)
 worksheet = sheet.get_worksheet(0)
@@ -59,7 +58,7 @@ async def navigator():
         await page.screenshot({'path': 'loaded.png', 'fullPage': 'True'})
         await asyncio.sleep(5)
         if settings.activeflag == "True":
-            #await page.click(settings.selector3)
+            # await page.click(settings.selector3)
             await asyncio.sleep(5)
             await page.screenshot({'path': 'success.png', 'fullPage': 'True'})
         await browser.close()
