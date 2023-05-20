@@ -1,8 +1,9 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install --no-install-recommends -y python3.10 python3-pip python3-wheel build-essential && \
+RUN apt-get update && apt-get install --no-install-recommends -y python3.10 python3-pip python3-wheel build-essential software-properties-common && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
 RUN add-apt-repository ppa:xtradeb/apps
 RUN apt-get update
 RUN apt-get install chromium
