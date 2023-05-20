@@ -1,0 +1,13 @@
+[default]
+MORPHO_loglevel="INFO"
+MORPHO_host="0.0.0.0"
+MORPHO_port="8080"
+#MORPHO_url=""
+#MORPHO_check_identifier=""
+#MORPHO_check_selector=""
+#MORPHO_selector1=""
+#MORPHO_selector2=""
+#MORPHO_selector3=""
+#MORPHO_gsheeturl=""
+#MORPHO_activeflag="False"
+#MORPHO_credentials=""
