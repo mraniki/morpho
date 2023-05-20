@@ -8,6 +8,14 @@ RUN apt update && \
     apt clean
 
 COPY ./src .
+# Add pptr user.
+RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
+    && mkdir -p /home/pptruser/Downloads \
+    && chown -R pptruser:pptruser /home/pptruser \
+    && chown -R pptruser:pptruser /app
+# Run user as non privileged.
+USER pptruser
+
 RUN pip install -r requirements.txt
 RUN chmod -R 777 /app
 EXPOSE 8443 8080
