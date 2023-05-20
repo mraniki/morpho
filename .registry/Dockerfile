@@ -29,6 +29,7 @@ RUN apt-get update && apt upgrade -y && apt-get install --no-install-recommends 
 #  /home/ubuntu/.local/share
 
 WORKDIR /app
+RUN chmod -R 777 /app
 COPY --chmod=0755 ./src .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
