@@ -9,8 +9,8 @@ from fastapi import FastAPI
 import gspread
 import random
 import re
-#from playwright.async_api import async_playwright
-from pyppeteer import launch
+from playwright.async_api import async_playwright
+#from pyppeteer import launch
 from config import settings, logger
 
 gc = gspread.service_account_from_dict(settings.credentials)
@@ -37,10 +37,13 @@ def data_update():
     worksheet.update(f'F{cell.address[1:]}', 'Done')
 
 
-async def navigator():
+async def navigator(playwright):
     while True:
-        browser = await launch()
-        page = await browser.newPage()
+        chromium = playwright.chromium
+        browser = await chromium.launch()
+        page = await browser.new_page()
+        #browser = await launch()
+        #page = await browser.newPage()
         await page.goto(settings.url)
         element = await page.querySelector(settings.check_identifier)
         check = await page.evaluate(
@@ -77,7 +80,7 @@ def startup_event():
     """fastapi startup"""
     loop = asyncio.get_event_loop()
     try:
-        loop.create_task(navigator())
+        loop.create_task(navigator(playwright))
         logger.info("Webserver started")
     except Exception as e:
         loop.stop()
