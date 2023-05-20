@@ -9,7 +9,7 @@ from fastapi import FastAPI
 import gspread
 import random
 import re
-from playwright.async_api import async_playwright
+#from playwright.async_api import async_playwright
 from pyppeteer import launch
 from config import settings, logger
 
