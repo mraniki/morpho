@@ -64,7 +64,7 @@ async def navigator(playwright):
         if settings.activeflag == "True":
             # await page.click(settings.selector3)
             await asyncio.sleep(5)
-             page.screenshot({'path': 'success.png', 'fullPage': 'True'})
+            page.screenshot({'path': 'success.png', 'fullPage': 'True'})
         browser.close()
         data_update()
         sleep = random.randint(70, 3606)
