@@ -34,4 +34,5 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 #RUN pyppeteer-install
 EXPOSE 8443 8080
+USER root
 CMD [ "python", "./bot.py" ]
