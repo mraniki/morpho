@@ -13,11 +13,12 @@ RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
     && chown -R pptruser:pptruser /app \
     && chown -R pptruser:pptruser .
 # Run user as non privileged.
-USER pptruser
+
 RUN pip install -r requirements.txt
-RUN pyppeteer-install
+#RUN pyppeteer-install
 RUN playwright install-deps
 RUN playwright install chromium
 RUN chmod -R 777 /app
+USER pptruser
 EXPOSE 8443 8080
 CMD [ "python", "./bot.py" ]
