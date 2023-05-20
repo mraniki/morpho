@@ -1,12 +1,10 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.11-slim-bullseye
 
 RUN apt-get update && \
 apt-get -y install chromium firefox-esr && \
   pip install -U pip && \
   pip install playwright && \
   playwright install && playwright install-deps && \
-  pip install pyppeteer && \
-  pyppeteer-install && \
   rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

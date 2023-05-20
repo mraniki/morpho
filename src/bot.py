@@ -9,8 +9,7 @@ from fastapi import FastAPI
 import gspread
 import random
 import re
-from playwright.sync_api import sync_playwright
-#from pyppeteer import launch
+from playwright.async_api import async_playwright
 from config import settings, logger
 
 gc = gspread.service_account_from_dict(settings.credentials)
@@ -37,39 +36,38 @@ def data_update():
     worksheet.update(f'F{cell.address[1:]}', 'Done')
 
 
-async def navigator(playwright):
+async def navigator():
     while True:
-        chromium = playwright.chromium
-        browser = chromium.launch()
-        page = await browser.new_page()
-        #browser = await launch()
-        #page = await browser.newPage()
-        page.goto(settings.url)
-        element = page.querySelector(settings.check_identifier)
-        check = page.evaluate(
-            '(element) => element.textContent',
-            element)
-        logger.debug(check)
-        data = re.findall(r'\d+', check)
-        logger.debug(data)
-        data_process = int(data[0]) + int(data[1])
-        logger.info("data_process: %s", data_process)
-        page.keyboard.type(data_selector())
-        page.click(settings.check_selector)
-        page.keyboard.type(f"{data_process}")
-        page.click(settings.selector1)
-        page.click(settings.selector2)
-        page.screenshot({'path': 'loaded.png', 'fullPage': 'True'})
-        await asyncio.sleep(5)
-        if settings.activeflag == "True":
-            # await page.click(settings.selector3)
+        async with async_playwright() as playwright:
+            chromium = playwright.chromium
+            browser = await chromium.launch()
+            page = await browser.new_page()
+            await page.goto(settings.url)
+            element = await page.query_selector(settings.check_identifier)
+            check = await page.evaluate(
+                '(element) => element.textContent',
+                element)
+            logger.debug(check)
+            data = re.findall(r'\d+', check)
+            logger.debug(data)
+            data_process = int(data[0]) + int(data[1])
+            logger.info("data_process: %s", data_process)
+            await page.keyboard.type(data_selector())
+            await page.click(settings.check_selector)
+            await page.keyboard.type(f"{data_process}")
+            await page.click(settings.selector1)
+            await page.click(settings.selector2)
+            await page.screenshot(path="loaded.png", full_page=True)
             await asyncio.sleep(5)
-            page.screenshot({'path': 'success.png', 'fullPage': 'True'})
-        browser.close()
-        data_update()
-        sleep = random.randint(70, 3606)
-        logger.info("sleep: %s", sleep)
-        await asyncio.sleep(sleep)
+            if settings.activeflag == "True":
+                # await page.click(settings.selector3)
+                await asyncio.sleep(5)
+                await page.screenshot(path="success.png", full_page=True)
+            await browser.close()
+            data_update()
+            sleep = random.randint(70, 3606)
+            logger.info("sleep: %s", sleep)
+            await asyncio.sleep(sleep)
 
 # ⛓️API
 app = FastAPI(title="navigator",)
@@ -80,8 +78,7 @@ def startup_event():
     """fastapi startup"""
     loop = asyncio.get_event_loop()
     try:
-        with sync_playwright() as playwright:
-            loop.create_task(navigator(playwright))
+        loop.create_task(navigator())
         logger.info("Webserver started")
     except Exception as e:
         loop.stop()

@@ -3,5 +3,4 @@ fastapi>=0.95.1
 uvicorn>=0.21.0
 asyncio
 gspread
-pyppeteer
 playwright
