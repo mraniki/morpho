@@ -80,7 +80,8 @@ def startup_event():
     """fastapi startup"""
     loop = asyncio.get_event_loop()
     try:
-        loop.create_task(navigator(playwright))
+        async with async_playwright() as playwright:
+            loop.create_task(navigator(playwright))
         logger.info("Webserver started")
     except Exception as e:
         loop.stop()
