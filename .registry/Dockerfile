@@ -7,17 +7,18 @@ RUN apt-get update && \
   libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 \
   libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 \
   libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 \
-  libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget && \
+  libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget curl && \
+  pip install -U pip && \
+  pip install playwright && \
+  playwright install && playwright install-deps && \
+  pip install pyppeteer && \
+  pyppeteer-install && \
   rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-# ENV PYPPETEER_HOME /app/pyppeteer
-RUN pip install -U pip && pip install pyppeteer && pyppeteer-install
-
 COPY ./src .
 RUN pip install -r requirements.txt
 CMD python3 bot.py
-
 
 
 #UBNUTU
