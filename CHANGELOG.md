@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.1 (2023-05-20)
+### Fix
+* :speech_balloon:Add Docker pull command to README. ([`d245f7d`](https://github.com/mraniki/morpho/commit/d245f7dd9ce90667745e3f4764376f12d8b7a937))
+
+### Other
+* Update README.md ([`a1e02f5`](https://github.com/mraniki/morpho/commit/a1e02f58220f4fcf7a47b34e891e4fdc2a9d2725))
+
 ## v0.1.0 (2023-05-20)
 ### Feature
 * :children_crossing: Update logging and default settings ([`2edd87a`](https://github.com/mraniki/morpho/commit/2edd87ab1c5fee2ece2f5c82ee61c737ead47735))
