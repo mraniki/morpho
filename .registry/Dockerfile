@@ -1,35 +1,15 @@
-FROM alpine
+FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
 
-# Installs latest Chromium (100) package.
-RUN apk add --no-cache \
-      chromium \
-      nss \
-      freetype \
-      harfbuzz \
-      ca-certificates \
-      ttf-freefont \
-      nodejs \
-      yarn
-
-# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-
-# Puppeteer v13.5.0 works with Chromium 100.
-RUN yarn add puppeteer@13.5.0
-
-# Add user so we don't need --no-sandbox.
-RUN addgroup -S pptruser && adduser -S -G pptruser pptruser \
-    && mkdir -p /home/pptruser/Downloads /app \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /app
-
-RUN apk add --no-cache python3 py3-pip
+RUN apt-get update && apt-get install --no-install-recommends -y python3.10 python3-pip python3-wheel build-essential && \
+	apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get install chromium-browser
+RUN apt-get install firefox
 
 WORKDIR /app
 COPY ./src .
-# COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pyppeteer-install
 EXPOSE 8443 8080
-USER pptruser
 CMD [ "python", "./bot.py" ]
