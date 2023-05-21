@@ -25,7 +25,7 @@ def data_selector():
         text_status = worksheet.acell(f'F{i}').value
         if text_status != 'Done':
             break
-    logger.debug(text_value)
+    logger.info("Data to submit: %s", text_value)
     return text_value
 
 
@@ -49,9 +49,9 @@ async def navigator():
                 element)
             logger.debug(check)
             data = re.findall(r'\d+', check)
-            logger.debug(data)
+            logger.info(data)
             data_process = int(data[0]) + int(data[1])
-            logger.info("data_process: %s", data_process)
+            logger.info("Control: %s", data_process)
             await page.keyboard.type(data_selector())
             await page.click(settings.check_selector)
             await page.keyboard.type(f"{data_process}")
@@ -60,13 +60,15 @@ async def navigator():
             await page.screenshot(path="loaded.png", full_page=True)
             await asyncio.sleep(5)
             if settings.activeflag == "True":
+                logger.info("Submitting")
                 await page.click(settings.selector3)
                 await asyncio.sleep(5)
                 await page.screenshot(path="success.png", full_page=True)
+                data_update()
+                logger.info("Submit Done")
             await browser.close()
-            data_update()
-            sleep = random.randint(70, 3606)
-            logger.info("sleep: %s", sleep)
+            sleep = random.randint(72, 3606)
+            logger.info("sleeping: %s", sleep)
             await asyncio.sleep(sleep)
 
 # ⛓️API
