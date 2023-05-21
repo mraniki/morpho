@@ -60,7 +60,7 @@ async def navigator():
             await page.screenshot(path="loaded.png", full_page=True)
             await asyncio.sleep(5)
             if settings.activeflag == "True":
-                # await page.click(settings.selector3)
+                await page.click(settings.selector3)
                 await asyncio.sleep(5)
                 await page.screenshot(path="success.png", full_page=True)
             await browser.close()
