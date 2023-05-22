@@ -37,42 +37,48 @@ def data_update():
 
 
 async def navigator():
-    try:
-        while True:
-            async with async_playwright() as playwright:
-                chromium = playwright.chromium
-                browser = await chromium.launch()
-                page = await browser.new_page()
-                await page.goto(settings.url)
-                element = await page.query_selector(settings.check_identifier)
-                check = await page.evaluate(
-                    '(element) => element.textContent',
-                    element)
-                logger.debug(check)
-                data = re.findall(r'\d+', check)
-                logger.info(data)
-                data_process = int(data[0]) + int(data[1])
-                logger.info("Control: %s", data_process)
-                await page.keyboard.type(data_selector())
-                await page.click(settings.check_selector)
-                await page.keyboard.type(f"{data_process}")
-                await page.click(settings.selector1)
-                await page.click(settings.selector2)
-                await page.screenshot(path="loaded.png", full_page=True)
-                await asyncio.sleep(5)
+    while True:
+        async with async_playwright() as playwright:
+            chromium = playwright.chromium
+            browser = await chromium.launch()
+            page = await browser.new_page()
+            await page.goto(settings.url)
+            element = await page.query_selector(settings.check_identifier)
+            check = await page.evaluate(
+                '(element) => element.textContent',
+                element)
+            logger.debug(check)
+            data = re.findall(r'\d+', check)
+            logger.info(data)
+            data_process = int(data[0]) + int(data[1])
+            logger.info("Control: %s", data_process)
+            await page.keyboard.type(data_selector())
+            # await page.click(settings.check_selector)
+            await page.locator(settings.check_selector).click()
+            await page.keyboard.type(f"{data_process}")
+            await page.locator(settings.selector1).click()
+            # await page.click(settings.selector2)
+            await page.locator(settings.selector2).click()
+            await page.screenshot(path="loaded.png", full_page=True)
+            await asyncio.sleep(5)
+            try:
                 if settings.activeflag == "True":
                     logger.info("Submitting")
-                    await page.click(settings.selector3)
+                    # await page.click(settings.selector3)
+                    await page.locator(settings.selector3).click()
                     await asyncio.sleep(5)
                     await page.screenshot(path="success.png", full_page=True)
                     data_update()
                     logger.info("Submit Done")
-                await browser.close()
-                sleep = random.randint(72, 3606)
-                logger.info("sleeping: %s", sleep)
-                await asyncio.sleep(sleep)
-    except Exception as e:
-        logger.error("Bot issue: %s", e)
+                    await browser.close()
+                else:
+                    logger.info("skipping submission")
+            except Exception as e:
+                logger.error("Bot issue: %s", e)
+            sleep = random.randint(72, 3606)
+            logger.info("sleeping: %s", sleep)
+            await asyncio.sleep(sleep)
+
 
 # ⛓️API
 app = FastAPI(title="navigator",)

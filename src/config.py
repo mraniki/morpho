@@ -8,8 +8,7 @@ settings = Dynaconf(
     envvar_prefix="MORPHO",
     root_path=os.path.dirname(ROOT),
     settings_files=[
-        os.path.join(ROOT,
-        "default_settings.toml"),
+        os.path.join(ROOT, "default_settings.toml"),
         'settings.toml',
         '.secrets.toml'
         ],
@@ -27,4 +26,6 @@ logging.basicConfig(
 logger = logging.getLogger("MORPHO")
 if settings.loglevel == "DEBUG":
     logging.getLogger("websockets.client").setLevel(logging.WARNING)
-    logging.getLogger("playwright").setLevel(logging.WARNING)
+    # logging.getLogger("playwright").setLevel(logging.WARNING)
+    logging.getLogger("urllib3.connectionpool").setLevel(logging.WARNING)
+
