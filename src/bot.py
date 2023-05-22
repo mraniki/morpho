@@ -75,7 +75,7 @@ async def navigator():
                     logger.info("skipping submission")
             except Exception as e:
                 logger.error("Bot issue: %s", e)
-            sleep = random.randint(72, 3606)
+            sleep = random.randint(72, 1200)
             logger.info("sleeping: %s", sleep)
             await asyncio.sleep(sleep)
 
