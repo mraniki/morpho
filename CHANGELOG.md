@@ -2,6 +2,18 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.2 (2023-05-23)
+### Fix
+* :zap: settings ([`babd30b`](https://github.com/mraniki/morpho/commit/babd30b7c9aa8c50f54bf8d99d09802b41f21c8f))
+
+### Other
+* ⚡ sleeping params ([`31e4578`](https://github.com/mraniki/morpho/commit/31e45789c76294fde677cfb0d7a16961566c24bb))
+* 🐛 shorter timeing ([`b0cc9fc`](https://github.com/mraniki/morpho/commit/b0cc9fce9ad9e57368cf58e77d2f1789a887ac0f))
+* 🐛 bot blocked in case of timeout ([`3ac5599`](https://github.com/mraniki/morpho/commit/3ac5599400a8f1bc8ab4bcf69b00ebe4035e067b))
+* 🔍 better error handling in case of not correct text ([`ce838e4`](https://github.com/mraniki/morpho/commit/ce838e4df18bd73b935dae89f60d654719d1f4ba))
+* 💬 logging update. ([`857a120`](https://github.com/mraniki/morpho/commit/857a1206d5bb9b956abf2cf2f51011bc69d53a44))
+* ⚡ ready to start ([`2bc8586`](https://github.com/mraniki/morpho/commit/2bc8586f42493eb63f6fdbf27d3f45a4d3439d03))
+
 ## v0.1.1 (2023-05-20)
 ### Fix
 * :speech_balloon:Add Docker pull command to README. ([`d245f7d`](https://github.com/mraniki/morpho/commit/d245f7dd9ce90667745e3f4764376f12d8b7a937))
