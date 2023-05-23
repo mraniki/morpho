@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.3 (2023-05-23)
+### Fix
+* :zap: Update pyproject.toml with patch_emoji. ([`72b0532`](https://github.com/mraniki/morpho/commit/72b05328eae5fc988ba7a6051164843cdbbf0600))
+
 ## v0.1.2 (2023-05-23)
 ### Fix
 * :zap: settings ([`babd30b`](https://github.com/mraniki/morpho/commit/babd30b7c9aa8c50f54bf8d99d09802b41f21c8f))
