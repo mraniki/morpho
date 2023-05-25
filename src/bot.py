@@ -73,12 +73,11 @@ async def navigator():
                     await browser.close()
                 else:
                     logger.info("skipping submission")
+                sleep = random.randint(settings.sleeping_low, settings.sleeping_high)
+                logger.info("sleeping: %s", sleep)
+                await asyncio.sleep(sleep)
             except Exception as e:
                 logger.error("Bot issue: %s", e)
-            sleep = random.randint(settings.sleeping_low, settings.sleeping_high)
-            logger.info("sleeping: %s", sleep)
-            await asyncio.sleep(sleep)
-
 
 # ⛓️API
 app = FastAPI(title="navigator",)
