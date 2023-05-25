@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.4 (2023-05-25)
+### Fix
+* ⚡ Refactor navigator function to improve sleep logging ([`da30ae9`](https://github.com/mraniki/morpho/commit/da30ae91b32daf30c44f4010a2d51beefd271537))
+
 ## v0.1.3 (2023-05-23)
 ### Fix
 * :zap: Update pyproject.toml with patch_emoji. ([`72b0532`](https://github.com/mraniki/morpho/commit/72b05328eae5fc988ba7a6051164843cdbbf0600))
