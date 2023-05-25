@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.5 (2023-05-25)
+### Fix
+* ⚡ Refactor logging configuration in config.py file. ([`e08f00b`](https://github.com/mraniki/morpho/commit/e08f00b4606b9e3497add2d23d10b1ae85fd4417))
+
 ## v0.1.4 (2023-05-25)
 ### Fix
 * ⚡ Refactor navigator function to improve sleep logging ([`da30ae9`](https://github.com/mraniki/morpho/commit/da30ae91b32daf30c44f4010a2d51beefd271537))
