@@ -24,8 +24,8 @@ logging.basicConfig(
     level=settings.loglevel
 )
 logger = logging.getLogger("MORPHO")
-if settings.loglevel == "DEBUG":
-    logging.getLogger("websockets.client").setLevel(logging.WARNING)
+#if settings.loglevel == "DEBUG":
+    #logging.getLogger("websockets.client").setLevel(logging.WARNING)
     # logging.getLogger("playwright").setLevel(logging.WARNING)
-    logging.getLogger("urllib3.connectionpool").setLevel(logging.WARNING)
+    #logging.getLogger("urllib3.connectionpool").setLevel(logging.WARNING)
 
