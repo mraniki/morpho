@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.6 (2023-05-26)
+### Fix
+* 🔧 sleeping udpate ([`01bbaba`](https://github.com/mraniki/morpho/commit/01bbabad3dc48b48006ff40e712b8fd84e058d23))
+* 🐛 429 bug ([`1126cbe`](https://github.com/mraniki/morpho/commit/1126cbe98bd98b40cb6c96b0043981cbe5f3b4ab))
+
 ## v0.1.5 (2023-05-25)
 ### Fix
 * ⚡ Refactor logging configuration in config.py file. ([`e08f00b`](https://github.com/mraniki/morpho/commit/e08f00b4606b9e3497add2d23d10b1ae85fd4417))
