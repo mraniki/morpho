@@ -7,12 +7,15 @@ import asyncio
 import uvicorn
 from fastapi import FastAPI
 import gspread
+from gspread import BackoffClient
 import random
 import re
 from playwright.async_api import async_playwright
 from config import settings, logger
 
-gc = gspread.service_account_from_dict(settings.credentials)
+gc = gspread.service_account_from_dict(
+    settings.credentials,
+    client_factory=BackoffClient)
 sheet = gc.open_by_url(settings.gsheeturl)
 worksheet = sheet.get_worksheet(0)
 
@@ -20,25 +23,33 @@ worksheet = sheet.get_worksheet(0)
 def data_selector():
     global text_value
     global text_value
-    for i in range(3, 1000):
-        text_value = worksheet.acell(f'E{i}').value
-        text_status = worksheet.acell(f'F{i}').value
-        if text_status != 'Done':
-            if text_value != '#ERROR!':
-                break
-    logger.info("Text selected: %s", text_value)
-    return text_value
+    try:
+        for i in range(3, 1000):
+            text_value = worksheet.acell(f'E{i}').value
+            text_status = worksheet.acell(f'F{i}').value
+            if text_status != 'Done':
+                if text_value != '#ERROR!':
+                    break
+        logger.info("Text selected: %s", text_value)
+        return text_value
+    except Exception as e:
+        logger.error("data_selector issue: %s", e)
 
 
 def data_update():
-    cell = worksheet.find(text_value)
-    worksheet.update(f'F{cell.address[1:]}', 'Done')
-    logger.info("Spreasheet updated")
+    try:
+        cell = worksheet.find(text_value)
+        worksheet.update(f'F{cell.address[1:]}', 'Done')
+        logger.info("Spreasheet updated")
+    except Exception as e:
+        logger.error("data_update issue: %s", e)
+        pass
 
 
 async def navigator():
     while True:
         async with async_playwright() as playwright:
+
             chromium = playwright.chromium
             browser = await chromium.launch()
             page = await browser.new_page()
@@ -52,19 +63,17 @@ async def navigator():
             logger.info(data)
             data_process = int(data[0]) + int(data[1])
             logger.info("Control: %s", data_process)
-            await page.keyboard.type(data_selector())
-            # await page.click(settings.check_selector)
+            input = data_selector()
+            await page.keyboard.type(input)
             await page.locator(settings.check_selector).click()
             await page.keyboard.type(f"{data_process}")
             await page.locator(settings.selector1).click()
-            # await page.click(settings.selector2)
             await page.locator(settings.selector2).click()
             await page.screenshot(path="loaded.png", full_page=True)
             await asyncio.sleep(5)
             try:
                 if settings.activeflag == "True":
                     logger.info("Submitting")
-                    # await page.click(settings.selector3)
                     await page.locator(settings.selector3).click()
                     await asyncio.sleep(5)
                     await page.screenshot(path="success.png", full_page=True)
