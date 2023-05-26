@@ -24,6 +24,7 @@ def data_selector():
     global text_value
     global text_value
     try:
+        logger.info("Searching Text")
         for i in range(3, 1000):
             text_value = worksheet.acell(f'E{i}').value
             text_status = worksheet.acell(f'F{i}').value
@@ -38,6 +39,7 @@ def data_selector():
 
 def data_update():
     try:
+        logger.info("Spreasheet to be updated")
         cell = worksheet.find(text_value)
         worksheet.update(f'F{cell.address[1:]}', 'Done')
         logger.info("Spreasheet updated")
@@ -65,10 +67,13 @@ async def navigator():
             logger.info("Control: %s", data_process)
             input = data_selector()
             await page.keyboard.type(input)
+            logger.info("Text captured")
             await page.locator(settings.check_selector).click()
             await page.keyboard.type(f"{data_process}")
+            logger.info("check captured")
             await page.locator(settings.selector1).click()
             await page.locator(settings.selector2).click()
+            logger.info("checkbox captured")
             await page.screenshot(path="loaded.png", full_page=True)
             await asyncio.sleep(5)
             try:
