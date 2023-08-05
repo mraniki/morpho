@@ -5,7 +5,11 @@ description = "morpho"
 authors = ["mraniki <8766259+mraniki@users.noreply.github.com>"]
 license = "MIT License"
 readme = "README.md"
+packages = [
+    { include = "morpho", from = "src" }
+]
 
+  
 [tool.poetry.urls]
 "Changelog" =  "https://github.com/mraniki/morpho/blob/dev/CHANGELOG.rst"
 "Support" =  "https://github.com/mraniki/morpho/discussions"
