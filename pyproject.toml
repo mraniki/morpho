@@ -20,6 +20,7 @@ fastapi = "^0.101.0"
 playwright = "^1.36.0"
 gspread = "^5.10.0"
 
+
 [tool.poetry.group.test.dependencies]
 pytest = "^7.0"
 pytest-cov = "^4.1"
@@ -28,7 +29,7 @@ pytest-mock = "^3.11.1"
 pytest-loguru = "^0.2.0"
 pytest-playwright = "^0.3.3"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 python-semantic-release = "^7.34.6"
 ruff = "^0.0.281"
 
