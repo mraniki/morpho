@@ -16,6 +16,7 @@ python = ">=3.9,<3.11"
 pytest = "*"
 pytest-cov = "*"
 pytest-asyncio = "*"
+pytest-playwright = "^0.3.3"
 
 [tool.poetry.dev-dependencies]
 python-semantic-release = "*"
