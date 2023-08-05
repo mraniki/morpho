@@ -1,14 +1,24 @@
-version: 2
-updates:
-
-  # Maintain dependencies for GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-
-  # Maintain dependencies for npm
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "weekly"
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":semanticCommitTypeAll(⬆️)",
+    ":disableDependencyDashboard"
+  ],
+  "semanticCommits": "enabled",
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true,
+      "minimumReleaseAge": "8 hours"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "matchBaseBranches": ["dev"],
+      "minimumReleaseAge": "30 days"
+    }
+  ]
+}
