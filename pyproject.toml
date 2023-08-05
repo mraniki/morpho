@@ -5,20 +5,45 @@ description = "morpho"
 authors = ["mraniki <8766259+mraniki@users.noreply.github.com>"]
 license = "MIT License"
 readme = "README.md"
+packages = [
+    { include = "morpho", from = "src" }
+]
 
+  
 [tool.poetry.urls]
 "Changelog" =  "https://github.com/mraniki/morpho/blob/dev/CHANGELOG.rst"
 "Support" =  "https://github.com/mraniki/morpho/discussions"
 "Issues" =  "https://github.com/mraniki/morpho/issues"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
-pytest = "*"
-pytest-cov = "*"
-pytest-asyncio = "*"
+python = "^3.10"
+dynaconf = "^3.1.12"
+loguru = "^0.7.0"
+uvicorn = "^0.23.0"
+fastapi = "^0.101.0"
+playwright = "^1.36.0"
+gspread = "^5.10.0"
 
-[tool.poetry.dev-dependencies]
-python-semantic-release = "*"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.0"
+pytest-cov = "^4.1"
+pytest-asyncio = "^0.21.0"
+pytest-mock = "^3.11.1"
+pytest-loguru = "^0.2.0"
+pytest-playwright = "^0.3.3"
+
+[tool.poetry.group.dev.dependencies]
+python-semantic-release = "^7.34.6"
+ruff = "^0.0.281"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+sphinx = ">=5,<6"
+sphinx_bootstrap_theme = "^0.8.1"
+sphinxext-remoteliteralinclude = "^0.4.0"
 
 [build-system]
 requires = ["poetry-core"]
