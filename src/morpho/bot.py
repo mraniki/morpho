@@ -1,7 +1,7 @@
 """
 navigator
 """
-__version__ = "0.1.6"
+#__version__ = "0.1.6"
 
 import asyncio
 import uvicorn
@@ -120,14 +120,14 @@ async def shutdown_event():
 @app.get("/")
 def root():
     """Fastapi root"""
-    return {f"online {__version__}"}
+    return {"online"}
 
 
 @app.get("/health")
 def health_check():
     """fastapi health"""
     logger.info("Healthcheck")
-    return {f"online {__version__}"}
+    return {"online"}
 
 
 if __name__ == '__main__':
