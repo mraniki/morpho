@@ -35,7 +35,7 @@ pytest-playwright = "^0.3.3"
 
 [tool.poetry.group.dev.dependencies]
 python-semantic-release = "^8.0.8"
-ruff = "^0.0.281"
+ruff = "^0.0.287"
 
 [tool.poetry.group.docs]
 optional = true
