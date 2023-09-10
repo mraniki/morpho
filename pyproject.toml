@@ -34,7 +34,7 @@ pytest-loguru = "^0.2.0"
 pytest-playwright = "^0.3.3"
 
 [tool.poetry.group.dev.dependencies]
-python-semantic-release = "^7.34.6"
+python-semantic-release = "^8.0.8"
 ruff = "^0.0.281"
 
 [tool.poetry.group.docs]
