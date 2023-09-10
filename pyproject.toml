@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "morpho"
-version = "0.1.6"
+version = "0.2.0"
 description = "morpho"
 authors = ["mraniki <8766259+mraniki@users.noreply.github.com>"]
 license = "MIT License"
